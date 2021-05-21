@@ -10,8 +10,9 @@
           v-for="(link, index) in links" 
           :key="index"
           :class="{'active': link.current === true}"
+          @click="setActive(index)"
         >
-          <a href="link.url">{{link.text}}</a>
+          <a :href="link.url">{{link.text}}</a>
         </li>
       </ul>
       
@@ -28,17 +29,17 @@ export default {
       links: [
         {
           text: 'Charachters',
-          url: '#',
-          current: false
-        },
-        {
-          text: 'Comics',
-          url: '#',
+          url: 'javascript:void(0)',
           current: true
         },
         {
+          text: 'Comics',
+          url: 'javascript:void(0)',
+          current: false
+        },
+        {
           text: 'Movies',
-          url: '#',
+          url: 'javascript:void(0)',
           current: false
         },
         {
@@ -79,6 +80,14 @@ export default {
       ]
     }
   },
+  methods: {
+    setActive(index) {
+      this.links.forEach((link) => {
+        link.current = false;
+      })
+      this.links[index].current = true
+    }
+  }
 }
 </script>
 
